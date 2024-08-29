@@ -4,11 +4,11 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
-const athleteRoutes = require('./routes/athleteRoutes');  // Nueva ruta de atletas
-const timeRoutes = require('./routes/timeRoutes');  // Nueva ruta de tiempos
-const dashboardRoutes = require('./routes/dashboardRoutes');  // Importa las rutas de dashboard
+const authRoutes = require('./api/authRoutes');
+const userRoutes = require('./api/userRoutes');
+const athleteRoutes = require('./api/athleteRoutes');  // Nueva ruta de atletas
+const timeRoutes = require('./api/timeRoutes');  // Nueva ruta de tiempos
+const dashboardRoutes = require('./api/dashboardRoutes');  // Importa las rutas de dashboard
 
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
