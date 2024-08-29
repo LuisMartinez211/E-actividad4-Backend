@@ -1,8 +1,8 @@
 // backend/api/userRoutes.js
 
-const mongoose = require('mongoose');
-const { protect, authorize } = require('../middleware/authMiddleware');
-const { getUsers } = require('../controllers/userController');
+import mongoose from 'mongoose';
+import { protect, authorize } from '../middleware/authMiddleware';
+import { getUsers } from '../controllers/userController';
 
 // Conectar a la base de datos si no está conectada
 const connectToDatabase = async () => {
@@ -14,7 +14,7 @@ const connectToDatabase = async () => {
   });
 };
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   await connectToDatabase();
 
   if (req.method === 'GET' && req.url === '/users') {

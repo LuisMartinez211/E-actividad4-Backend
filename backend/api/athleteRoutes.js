@@ -1,13 +1,8 @@
 // backend/api/athleteRoutes.js
 
-const express = require('express');
-const { registerAthlete, getAllAthletes } = require('../controllers/athleteController');
-const router = express.Router();
-// api/athleteRoutes.js
+import mongoose from 'mongoose';
+import { registerAthlete, getAllAthletes } from '../controllers/athleteController';
 
-const express = require('express');
-const mongoose = require('mongoose');
-const Athlete = require('../models/Athlete');
 
 // Conectar a la base de datos si no está conectada
 const connectToDatabase = async () => {
@@ -19,7 +14,7 @@ const connectToDatabase = async () => {
   });
 };
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   await connectToDatabase();
     // Ruta para inscribir a un atleta
     router.post('/register', registerAthlete);

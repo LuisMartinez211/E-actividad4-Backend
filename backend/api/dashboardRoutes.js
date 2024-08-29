@@ -1,8 +1,9 @@
 // backend/api/dashboardRoutes.js
 
-const mongoose = require('mongoose');
-const Athlete = require('../models/Athlete');
-const TimeRecord = require('../models/TimeRecord');
+import mongoose from 'mongoose';
+import Athlete from '../models/Athlete';
+import TimeRecord from '../models/TimeRecord';
+
 
 // Conectar a la base de datos si no está conectada
 const connectToDatabase = async () => {
@@ -14,7 +15,7 @@ const connectToDatabase = async () => {
   });
 };
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   await connectToDatabase();
 
   if (req.method === 'GET' && req.url === '/statistics') {

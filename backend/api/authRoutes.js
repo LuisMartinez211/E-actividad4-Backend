@@ -1,7 +1,8 @@
 // backend/api/authRoutes.js
 
-const mongoose = require('mongoose');
-const { registerUser, loginUser } = require('../controllers/authController.js');
+import mongoose from 'mongoose';
+import { registerUser, loginUser } from '../controllers/authController.js';
+
 
 // Conectar a la base de datos si no está conectada
 const connectToDatabase = async () => {
@@ -13,7 +14,7 @@ const connectToDatabase = async () => {
   });
 };
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   await connectToDatabase();
 
   if (req.method === 'POST') {

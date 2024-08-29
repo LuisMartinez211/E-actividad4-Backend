@@ -1,7 +1,7 @@
 // backend/api/timeRoutes.js
 
-const mongoose = require('mongoose');
-const { registerTime, getTimesByCategory, getOverallWinners } = require('../controllers/timeController');
+import mongoose from 'mongoose';
+import { registerTime, getTimesByCategory, getOverallWinners } from '../controllers/timeController';
 
 // Conectar a la base de datos si no está conectada
 const connectToDatabase = async () => {
@@ -13,7 +13,7 @@ const connectToDatabase = async () => {
   });
 };
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   await connectToDatabase();
 
   if (req.method === 'POST' && req.url === '/register') {
