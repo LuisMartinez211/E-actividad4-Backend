@@ -1,7 +1,7 @@
 // backend/api/userRoutes.js
 
 import mongoose from 'mongoose';
-import { protect, authorize } from '../middleware/authMiddleware';
+import { protect, authorize } from '../middleware/authMiddleware.mjs';
 import { getUsers } from '../controllers/userController';
 
 // Conectar a la base de datos si no está conectada
