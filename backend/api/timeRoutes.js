@@ -1,16 +1,35 @@
-// backend/routes/timeRoutes.js
+// backend/api/timeRoutes.js
 
-const express = require('express');
+const mongoose = require('mongoose');
 const { registerTime, getTimesByCategory, getOverallWinners } = require('../controllers/timeController');
-const router = express.Router();
 
-// Ruta para registrar el tiempo de un atleta
-router.post('/register', registerTime);
+// Conectar a la base de datos si no está conectada
+const connectToDatabase = async () => {
+  if (mongoose.connection.readyState >= 1) return;
 
-// Ruta para obtener los tiempos por categoría
-router.get('/category/:category', getTimesByCategory);
+  await mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+};
 
-// Ruta para obtener los ganadores generales
-router.get('/winners', getOverallWinners);
+module.exports = async (req, res) => {
+  await connectToDatabase();
 
-module.exports = router;
+  if (req.method === 'POST' && req.url === '/register') {
+    return registerTime(req, res);
+  }
+
+  if (req.method === 'GET') {
+    if (req.url.startsWith('/category/')) {
+      const category = req.url.split('/category/')[1];
+      return getTimesByCategory(req, res, category);
+    }
+
+    if (req.url === '/winners') {
+      return getOverallWinners(req, res);
+    }
+  }
+
+  res.status(405).json({ message: 'Método no permitido' });
+};
